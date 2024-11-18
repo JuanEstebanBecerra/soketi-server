@@ -1,0 +1,15 @@
+services:
+  soketi:
+    image: quay.io/soketi/soketi:1.4-16-debian
+    container_name: soketi
+    tty: true
+    networks:
+      - soketi-network
+      
+    volumes:
+      - ./soketi/soketi.json:/app/config/soketi.json
+    command: ["node", "/app/dist/server.js", "--config", "/app/config/soketi.json"]
+
+networks:
+  soketi-network:
+    external: true
